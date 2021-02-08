@@ -87,18 +87,20 @@ ggsave( pca_vst, filename = "./PCA_VST.png",units = "cm",width = 20*1.3, height 
 
 #### pcs rld
 
-pca_rld <- plotPCA(rld, intgroup ='Condition') +
-  geom_point(size=4.5, aes(colour = Condition, shape = rld$Genotype))+
-  labs(title = "RLD", col="Condition", shape="Genotype")+
+pca_rld <- plotPCA(rld, intgroup ='Group') +
   theme_bw() +
-  theme( text = element_text(size=22), 
-         panel.border = element_blank(),
-         panel.grid.major = element_blank(),
-         panel.grid.minor = element_blank(),
-         plot.title = element_text(hjust = 0.5),
-         axis.line = element_line(colour = "black") )
+  geom_point(size=4.5, aes(shape=rld$DevStage))
+#pca_rld <- plotPCA(rld, intgroup ='Group') +
+#  geom_point(size=4.5, aes(colour = rld$Condition, shape = rld$Genotype))+
+#  labs(title = "RLD", col="Condition", shape="Genotype")+
+#  theme_bw() +
+#  theme( text = element_text(size=22), 
+#         panel.border = element_blank(),
+#         panel.grid.major = element_blank(),
+#         panel.grid.minor = element_blank(),
+#         plot.title = element_text(hjust = 0.5),
+#         axis.line = element_line(colour = "black") )
 
-pca_rld
 ggsave( pca_rld, filename = "./PCA_nrld.png",units = "cm",width = 20*1.3, height = 20,dpi = 320)
 
 
