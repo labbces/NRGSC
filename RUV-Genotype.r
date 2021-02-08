@@ -71,16 +71,17 @@ vst <- varianceStabilizingTransformation(data)
 rld <- rlog(data, blind = FALSE)
 
 ### pca vst
-pca_vst <- plotPCA(vst, intgroup ='Condition') +
+pca_vst <- plotPCA(vst, intgroup ='Group') +
   theme_bw() +
-  geom_point(size=4.5, aes(colour = Condition, shape = vst$Genotype))+
-  labs(title = "VST", col="Condition", shape="Genotype")+
-  theme( text = element_text(size=22), 
-    panel.border = element_blank(),
-    panel.grid.major = element_blank(),
- 	  panel.grid.minor = element_blank(),
-    plot.title = element_text(hjust = 0.5),
-    axis.line = element_line(colour = "black") )
+  geom_point(size=4.5, aes(shape=vst$DevStage))
+#  geom_point(size=4.5, aes(colour = vst$DevStage, 
+#                           shape = vst$Genotype))+
+#    theme( text = element_text(size=22), 
+#    panel.border = element_blank(),
+#    panel.grid.major = element_blank(),
+# 	  panel.grid.minor = element_blank(),
+#    plot.title = element_text(hjust = 0.5),
+#    axis.line = element_line(colour = "black") )
 
 ggsave( pca_vst, filename = "./PCA_VST.png",units = "cm",width = 20*1.3, height = 20,dpi = 320)
 
