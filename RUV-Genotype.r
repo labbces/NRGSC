@@ -1,5 +1,5 @@
 # set working directory
-setwd("./")
+setwd("C://Users/Avell 5/Downloads/NRGSC-main/NRGSC-main/")
 ## install packages
 # install.packages(c("BiocManager","readr","dplyr", "magrittr","ggplot2","hexbin"),
 # lib = "./libraries",
@@ -11,16 +11,26 @@ setwd("./")
 # BiocManager::install("EDASeq", lib = "./libraries")
 
 #  load libraries
- library(readr, lib.loc =  "./libraries")
- library(dplyr, lib.loc =  "./libraries/")
- library(magrittr,  lib.loc = "./libraries")
- library(tximport, lib.loc = "./libraries")
- library(DESeq2, lib.loc = "./libraries")
- library(ggplot2, lib.loc =  "./libraries")
- library(hexbin, lib.loc =  "./libraries")
- library(EDASeq, lib.loc =  "./libraries")
- library(RUVSeq, lib.loc =  "./libraries")
+# library(readr, lib.loc =  "./libraries")
+# library(dplyr, lib.loc =  "./libraries/")
+# library(magrittr,  lib.loc = "./libraries")
+# library(tximport, lib.loc = "./libraries")
+# library(DESeq2, lib.loc = "./libraries")
+# library(ggplot2, lib.loc =  "./libraries")
+# library(hexbin, lib.loc =  "./libraries")
+# library(EDASeq, lib.loc =  "./libraries")
+# library(RUVSeq, lib.loc =  "./libraries")
  
+ library(readr)
+ library(dplyr)
+ library(magrittr)
+ library(tximport)
+ library(DESeq2)
+ library(ggplot2)
+ library(hexbin)
+ library(EDASeq)
+ library(RUVSeq)
+
 # load metadata
 sample_table <-read.table("metadata_complete.csv", sep = ",", header = T)
 # delete_samples
@@ -41,11 +51,20 @@ sample_table$Condition <- as.factor((sample_table$Condition))
 sample_table$Genotype <- as.factor((sample_table$Genotype))
 sample_table$DevStage <- as.factor((sample_table$DevStage))
 sample_table$Individual <- as.factor((sample_table$Individual))
-
+sample_table$Group <- paste(sample_table$Genotype,'_',
+                            sample_table$Condition,'_',
+                            sample_table$DevStage, sep='')
+sample_table$Group<-as.factor(sample_table$Group)
 raw <- DESeqDataSetFromTximport(txi = count_data,
                                  colData = sample_table,
-                                 design = ~ Condition)
- 
+                                 design = ~ Group)
+dim(raw)
+keep<- rowSums(counts(raw))>0
+table(keep)
+
+raw <- raw[keep,]
+dim(raw)
+
 data <- estimateSizeFactors(raw)
 
 vst <- varianceStabilizingTransformation(data)
