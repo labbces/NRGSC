@@ -8,5 +8,5 @@ echo $NSLOTS
 module load R/4.0.0
 
 bash bash_scripts.sh
-Rscript RUV-Genotype.r
+Rscript plots.r
 
