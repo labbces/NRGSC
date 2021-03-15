@@ -1,5 +1,5 @@
 # set working directory
-setwd("~/BIOINFORMATICA/NRGSC/")
+setwd(".")
 ## install packages
 # install.packages(c("BiocManager","readr","dplyr", "magrittr","ggplot2","backports","tidyverse"),
 # lib = "./libraries",
