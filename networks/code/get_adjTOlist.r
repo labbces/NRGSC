@@ -1,0 +1,5 @@
+library(igraph)
+A <- as.matrix(read.table("/Storage/data1/jorge.munoz/NRGSC.new/networks/results/adjacency_diff_expr.txt", header = T, row.names = 1))
+B <- graph_from_adjacency_matrix(A, weighted = T, mode = "undirected", add.colnames = "name" )
+adj.list <- get.adjlist(B)
+save(adj.list, file = "/Storage/data1/jorge.munoz/NRGSC.new/networks/results/graph_list.R")
