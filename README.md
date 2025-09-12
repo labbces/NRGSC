@@ -56,7 +56,6 @@ NRGSC/
 │       ├── make_histogram.r
 │       ├── make_hp_module_20.r
 │       ├── run_graph.sh
-│       ├── run_himcl2.sh
 │       ├── run_mcl.sh
 │       ├── TF_hipergeometric.r
 │       └── topGO.r
@@ -98,7 +97,7 @@ NRGSC/
 #### a. **Network Construction and Module Detection**
 - `code/make_graph_diff_corrected.r`: Constructs the gene co-expression network based on correlation matrices.
 - `code/run_graph.sh`: Runs the main network analysis pipeline.
-- `code/run_himcl2.sh`, `run_mcl.sh`: Run the Markov Clustering Algorithm (MCL) and/or HiMCL for module identification.
+- `code/run_mcl`: Runs mcl.
 
 #### b. **Module Characterization and Visualization**
 - `code/format_modules.sh`: Formats MCL output into usable modules.
@@ -132,7 +131,7 @@ NRGSC/
    - Use `make_full_matrixes_for_trinotate_web.r`, `pheatmap_by_groups.r`, and `up_set_plot.r` for downstream analysis and visualization.
 
 4. **Co-Expression Network Analysis**
-   - Build correlation matrices and networks using `networks/code/make_graph_diff_corrected.r`, then run clustering (`run_mcl.sh`, `run_himcl2.sh`).
+   - Build correlation matrices and networks using `networks/code/make_graph_diff_corrected.r`, then run clustering (`run_mcl.sh`).
    - Use `corr_modules.r`, `get_hub.r`, `GO_DEG.r`, `topGO.r`, and visualization scripts for module-trait correlation, hub gene detection, functional enrichment, and heatmap generation.
 
 ---
